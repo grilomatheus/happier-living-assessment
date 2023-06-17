@@ -1,22 +1,22 @@
 <template>
-  <div class="card">
-    <div class="card-header">
-      <div class="avatar">{{ items.length }}</div>
-      <h2>{{ cardName }}</h2>
+  <div class="custom-card">
+    <div class="custom-card__header">
+      <div class="custom-card__avatar">{{ items.length }}</div>
+      <h2 class="custom-card__name">{{ cardName }}</h2>
     </div>
-    <hr>
-    <div class="content" v-if="items.length > 0">
-      <ul>
-        <li v-for="(item, index) in items" :key="index" @click="removeItem(index)">
+    <hr class="custom-card__divider">
+    <div class="custom-card__content" v-if="items.length > 0">
+      <ul class="custom-card__list">
+        <li class="custom-card__item" v-for="(item, index) in items" :key="index" @click="removeItem(index)">
           {{ item }}
         </li>
       </ul>
     </div>
-    <div class="content" v-else>
+    <div class="custom-card__content custom-card__content--empty" v-else>
       <p>No items added yet. Start adding some!</p>
     </div>
-    <hr>
-    <button role="button" @click="addItem">Add Item</button>
+    <hr class="custom-card__divider">
+    <button class="custom-card__button" role="button" @click="addItem">Add Item</button>
   </div>
 </template>
   
@@ -47,67 +47,71 @@ export default {
 }
 </script>
   
-<style scoped>
-.card {
+<style lang="scss" scoped>
+@import '../assets/_variables.scss';
+.custom-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #b6b6b6;
-  border-top: 4px solid #936fdb;
+  border: 1px solid $color-grey;
+  border-top: 4px solid $color-secondary;
   border-radius: 4px;
   padding: 20px;
   margin-bottom: 20px;
-  background-color: #f3f3f3;
+  background-color: $color-light-grey;
   flex-grow: 1;
-}
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #636363;
-  color: white;
-  font-size: 16px;
-}
   
-.content ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.content ul li {
-  cursor: pointer;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.content ul li:last-child {
-  border-bottom: none;
-}
-
-button {
-  margin-top: auto;
-  padding: 10px;
-  border: none;
-  background-color: #1c50a9;
-  color: white;
-  cursor: pointer;
-  border-radius: 50px;
-}
-
-button:focus {
-  outline: 2px solid #936fdb;
-}
-
-button:hover {
-  background-color: #0056b3;
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $color-dark-grey;
+    color: $color-white;
+    font-size: 16px;
+  }
+  
+  &__content {
+    & ul {
+      list-style-type: none;
+      padding: 0;
+  
+      & li {
+        cursor: pointer;
+        padding: 10px 0;
+        border-bottom: 1px solid $color-light-grey;
+  
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  
+  &__button {
+    margin-top: auto;
+    padding: 10px;
+    border: none;
+    background-color: $color-primary;
+    color: $color-white;
+    cursor: pointer;
+    border-radius: 50px;
+  
+    &:focus {
+      outline: 2px solid $color-secondary;
+    }
+  
+    &:hover {
+      background-color: darken($color-primary, 10%);
+    }
+  }
 }
   </style>
   

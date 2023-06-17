@@ -1,10 +1,8 @@
 <template>
-  <nav>
-    <div class="navbar">
-      <div class="navbar-container">
-        <div class="name">{{ name }}</div>
-        <div class="date">{{ currentDate }}</div>
-      </div>
+  <nav class="custom-navbar">
+    <div class="custom-navbar__container">
+      <div class="custom-navbar__name">{{ name }}</div>
+      <div class="custom-navbar__date">{{ currentDate }}</div>
     </div>
   </nav>
 </template>
@@ -21,30 +19,29 @@ export default {
 }
 </script>
   
-<style scoped>
-.navbar {
+<style lang="scss" scoped>
+@import '../assets/_variables.scss';
+.custom-navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   justify-content: center;
   padding: 20px;
   background-color: #f8f9fa;
-}
 
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  width: 100%;
-}
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+  }
 
-.name {
-  font-size: 24px;
-}
+  &__name {
+    font-size: 24px;
+  }
 
-.date {
-  font-size: 16px;
+  &__date {
+    font-size: 16px;
+  }
 }
 </style>
   
